@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ludo Dhamal</title>
+  <link rel="stylesheet" type="text/css" href="css/style2.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+  <div class="wrapperAlert">
+  <div class="contentAlert">
+    <div class="topHalf">
+      <p><img src="img/logo/logo.png" width="200px;"></p>
+      <h1>Congratulations</h1>
+
+     <ul class="bg-bubbles">
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+     </ul>
+    </div>
+
+    <div class="bottomHalf">
+      <p>Well Done!, You have successfully registered with Us. Now Download & Enjoy.</p>
+      <a href="#" class="btn btn-style-two" id="filedownload" data-animation="fadeInUp" data-delay=".8s" tabindex="0" style="animation-delay: 0.8s;">Download Now</a>
+
+    </div>
+
+  </div>        
+
+</div>
+
+</body>
+</html>
+
+
+<script>
+  var client_id = 99;
+  var BaseURL = 'https://api.ludodhamaal.com/index.php/Web_service/';
+$( document ).ready(function() {
+    downloadFile();
+});
+
+function downloadFile(){
+
+      var formData = new FormData();
+      formData.append('device_type','android');
+      formData.append('client_id',client_id);
+      var api_url1=BaseURL+"getversion";
+    $.ajax({
+        url:api_url1,
+        method:"post",
+        data: formData,
+        dataType: 'JSON',
+        processData: false,
+        contentType: false,
+
+        success: function(data){
+            
+            var result=data;
+            if(result.status==1){
+
+
+
+            // filedownload(result.app_link,'App');
+
+             $("#filedownload").attr("href",result.app_link);
+
+            }
+          }
+    });
+}
+
+  // function downloadURI(uri, name) {
+  //   var link = document.createElement("a");
+  //   link.download = name;
+  //   link.href = uri;
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  //   delete link;
+  // }
+
+</script>
